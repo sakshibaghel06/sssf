@@ -122,6 +122,37 @@ create index if not exists gallery_images_order_idx
 -- this table.
 alter table gallery_images enable row level security;
 
+-- ---------------------------------------------------------------------------
+-- Volunteer applications submitted from the public /volunteer page
+-- ---------------------------------------------------------------------------
+-- Public users submit through the server-side /api/volunteer route, which
+-- uses the existing service-role Supabase client in lib/supabaseAdmin.ts.
+-- This table intentionally has no public read policy. It is write-only from
+-- the server-side route and remains invisible to the public browser by RLS.
+
+create table if not exists volunteer_applications (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+
+  name text not null,
+  email text not null,
+  phone text not null,
+  location text not null,
+  areas_of_interest text not null,
+  skills text not null,
+  availability text not null,
+  message text not null,
+
+  status text not null default 'pending' check (status in ('pending'))
+);
+
+create index if not exists volunteer_applications_status_idx
+  on volunteer_applications (status);
+create index if not exists volunteer_applications_created_at_idx
+  on volunteer_applications (created_at desc);
+
+alter table volunteer_applications enable row level security;
+
 -- Storage bucket that holds the actual image files. Marked `public` so the
 -- uploaded photos can be served directly via their public URL on the
 -- /gallery page without needing a storage RLS policy for downloads.

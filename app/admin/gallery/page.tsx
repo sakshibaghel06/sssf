@@ -35,7 +35,7 @@ export default async function AdminGalleryPage() {
             Gallery
           </h1>
           <p className="mt-3 max-w-xl text-sm text-sandalwood dark:text-ivory-soft/70">
-            Upload photos below. They're saved to Supabase and appear on the
+            Upload photos below. They&apos;re saved to Supabase and appear on the
             public <span className="font-medium">/gallery</span> page immediately —
             no rebuild or cache to bust.
           </p>

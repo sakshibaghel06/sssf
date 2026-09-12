@@ -3,10 +3,11 @@ import Image from "next/image";
 import { HeartHandshake, Stethoscope, GraduationCap, ShieldPlus, Users, ArrowRight, Flame } from "lucide-react";
 import UnityDivider from "@/components/UnityDivider";
 import SevaMark from "@/components/SevaMark";
-import ImpactStat from "@/components/ImpactStat";
 import ProgramCard from "@/components/ProgramCard";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import Testimonials from "@/components/Testimonials";
+import Reveal from "@/components/Reveal";
+import { foundationProgramPhotos } from "@/lib/foundationPhotos";
 
 // Reviews are read fresh from Supabase on every request so a newly-approved
 // review shows up the next time someone loads the homepage.
@@ -32,6 +33,37 @@ const HOME_CAROUSEL_SLIDES = [
     src: "/images/WhatsApp-Image2.jpeg",
     alt: "Women in a vocational training session",
     caption: "Vocational training that builds lasting livelihoods",
+  },
+];
+
+const IMPACT_AREAS = [
+  {
+    title: "Education",
+    href: "/education",
+    src: foundationProgramPhotos.education[0].src,
+    alt: foundationProgramPhotos.education[0].alt,
+    description: "School support, learning continuity and educational activity in community settings.",
+  },
+  {
+    title: "Healthcare",
+    href: "/healthcare",
+    src: foundationProgramPhotos.healthcare[0].src,
+    alt: foundationProgramPhotos.healthcare[0].alt,
+    description: "Health camps and outreach activities that bring care to underserved communities.",
+  },
+  {
+    title: "Annadanam",
+    href: "/annadanam",
+    src: foundationProgramPhotos.annadanam[0].src,
+    alt: foundationProgramPhotos.annadanam[0].alt,
+    description: "Food distribution and hunger relief support offered with practical community care.",
+  },
+  {
+    title: "Child Welfare",
+    href: "/child-welfare",
+    src: foundationProgramPhotos.childWelfare[0].src,
+    alt: foundationProgramPhotos.childWelfare[0].alt,
+    description: "Child-focused support, awareness, and community care rooted in dignity and safety.",
   },
 ];
 
@@ -95,32 +127,71 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Impact stats */}
-      <section className="py-16 md:py-20">
-        <div className="container-seva grid grid-cols-2 gap-y-10 md:grid-cols-4">
-          <ImpactStat value="50,000+" label="Meals distributed" />
-          <ImpactStat value="120+" label="Health camps held" />
-          <ImpactStat value="3,000+" label="Children supported" />
-          <ImpactStat value="15+" label="States reached" />
-        </div>
-
-        <div className="container-seva mt-14 md:mt-16">
-          <div className="max-w-xl">
-            <span className="eyebrow">A glimpse of our seva</span>
+      <section className="py-20 md:py-24">
+        <div className="container-seva">
+          <Reveal className="max-w-3xl">
+            <span className="eyebrow">OUR IMPACT</span>
             <h2 className="mt-4 font-display text-3xl text-maroon dark:text-ivory md:text-4xl">
-              Gallery
+              Service expressed through education, healthcare, food support and community development.
             </h2>
+            <p className="mt-4 text-sm md:text-base leading-relaxed text-sandalwood dark:text-ivory-soft/70">
+              What has the Foundation actually been working on? The clearest answer is found in the program areas, images and documented activity records that show how services are being carried forward in real communities.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {IMPACT_AREAS.map((area, index) => (
+              <Reveal key={area.title} delay={index * 70}>
+                <Link href={area.href} className="group block overflow-hidden rounded-[1.75rem] border border-maroon/10 bg-white/60 shadow-[0_12px_24px_rgba(92,57,19,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_18px_32px_rgba(92,57,19,0.08)] dark:border-marigold/15 dark:bg-charcoal-soft/60">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={area.src}
+                      alt={area.alt}
+                      fill
+                      sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 22vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-2xl text-maroon dark:text-ivory">{area.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/70">{area.description}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-maroon dark:text-marigold">
+                      Read more
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
-          <div className="mt-8 -mx-6 md:mx-0">
-            <PhotoCarousel slides={HOME_CAROUSEL_SLIDES} />
+
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/impact"
+              className="rounded-full bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.02] dark:bg-marigold dark:text-charcoal"
+            >
+              SEE OUR IMPACT
+            </Link>
           </div>
         </div>
       </section>
 
+      <Reveal className="container-seva pb-16 md:pb-20">
+        <div className="max-w-xl">
+          <span className="eyebrow">A glimpse of our seva</span>
+          <h2 className="mt-4 font-display text-3xl text-maroon dark:text-ivory md:text-4xl">
+            Gallery
+          </h2>
+        </div>
+        <div className="mt-8 -mx-6 md:mx-0">
+          <PhotoCarousel slides={HOME_CAROUSEL_SLIDES} />
+        </div>
+      </Reveal>
+
       {/* Mission */}
-      <section className="bg-ivory-soft dark:bg-charcoal-soft py-20">
+      <section className="section-band py-20">
         <div className="container-seva grid gap-12 md:grid-cols-2 md:items-center">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
             <Image
               src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=1200&auto=format&fit=crop"
               alt="A community health camp underway"
@@ -128,8 +199,8 @@ export default async function Home() {
               sizes="(max-width: 768px) 90vw, 560px"
               className="object-cover"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={100}>
             <span className="eyebrow">Our mission</span>
             <h2 className="mt-4 font-display text-3xl md:text-4xl text-maroon dark:text-ivory leading-tight">
               Rooted in devotion, working toward dignity.
@@ -154,19 +225,19 @@ the base for sustainable development.
               Read our story
               <ArrowRight className="h-4 w-4" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Programs preview */}
       <section className="py-20">
         <div className="container-seva">
-          <div className="max-w-xl">
+          <Reveal className="max-w-xl">
             <span className="eyebrow">What we do</span>
             <h2 className="mt-4 font-display text-3xl md:text-4xl text-maroon dark:text-ivory">
               Seva, in five parts.
             </h2>
-          </div>
+          </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ProgramCard
               accent="sky"
@@ -212,21 +283,21 @@ the base for sustainable development.
       <Testimonials />
 
       {/* Quote */}
-      <section className="relative py-24 bg-maroon dark:bg-charcoal-soft overflow-hidden">
+      <section className="relative overflow-hidden bg-maroon py-24 dark:bg-charcoal-soft">
         <div className="absolute inset-0 bg-flame-glow opacity-30" />
-        <div className="container-seva relative text-center">
+        <Reveal className="container-seva relative text-center">
           <SevaMark size={40} className="mx-auto" />
           <blockquote className="mt-6 mx-auto max-w-2xl font-display text-2xl md:text-3xl italic text-ivory leading-snug">
             &ldquo;Service, offered with love &mdash; that is our seva.&rdquo;
           </blockquote>
           <p className="mt-5 text-sm tracking-widest uppercase text-marigold">Our founding belief</p>
-        </div>
+        </Reveal>
       </section>
 
       {/* CTA */}
       <section className="py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-marigold/30 bg-ivory-soft dark:bg-charcoal-soft px-8 py-14 text-center md:px-16">
+          <Reveal className="rounded-[2rem] border border-marigold/30 bg-ivory-soft px-8 py-14 text-center dark:bg-charcoal-soft md:px-16">
             <h2 className="font-display text-3xl md:text-4xl text-maroon dark:text-ivory">
               Join us in this offering.
             </h2>
@@ -248,7 +319,7 @@ the base for sustainable development.
                 Volunteer with us
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import UnityDivider from "@/components/UnityDivider";
 import ContactForm from "@/components/ContactForm";
+import { ORG, ORG_CONTACT } from "@/lib/orgConfig";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with Sri Sai Swamy Seva Foundation — reach out to volunteer, partner, or ask about our programs.",
+  description: `Get in touch with ${ORG.name} — reach out to volunteer, partner, or ask about our programs.`,
 };
 
 export default function ContactPage() {
@@ -18,8 +19,7 @@ export default function ContactPage() {
             We&rsquo;d love to hear from you.
           </h1>
           <p className="mt-6 text-base leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-            Questions about a program, interested in volunteering, or want to
-            partner with us? Reach out below.
+            Questions about a program, interested in volunteering, or want to partner with us? Reach out below and the team will respond with verified coordination details.
           </p>
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-display text-base text-maroon dark:text-ivory">Visit us</h3>
                   <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">
-                    Foundation Campus, Hyderabad, Telangana, India
+                    {ORG_CONTACT.addressDisplay}
                   </p>
                 </div>
               </div>
@@ -47,7 +47,7 @@ export default function ContactPage() {
                 <Phone className="h-5 w-5 shrink-0 text-maroon dark:text-marigold mt-0.5" strokeWidth={1.75} />
                 <div>
                   <h3 className="font-display text-base text-maroon dark:text-ivory">Call us</h3>
-                  <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">+91 00000 00000</p>
+                  <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">{ORG_CONTACT.phoneDisplay}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-display text-base text-maroon dark:text-ivory">Email us</h3>
                   <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">
-                    connect@srisaiswamysevafoundation.org
+                    {ORG_CONTACT.emailDisplay}
                   </p>
                 </div>
               </div>

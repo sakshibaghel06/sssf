@@ -9,6 +9,7 @@ import {
   Twitter,
 } from "lucide-react";
 import UnityDivider from "./UnityDivider";
+import { ORG } from "@/lib/orgConfig";
 
 export default function Footer() {
   return (
@@ -18,7 +19,6 @@ export default function Footer() {
       </div>
 
       <div className="container-seva grid gap-10 py-14 md:grid-cols-4">
-        {/* Foundation */}
         <div>
           <div className="flex items-center gap-3">
             <Image
@@ -30,7 +30,7 @@ export default function Footer() {
             />
 
             <span className="font-display text-lg text-ivory">
-              SriSai Swamy Seva Foundation
+              Sri Sai Swamy Seva Foundation
             </span>
           </div>
 
@@ -43,10 +43,9 @@ export default function Footer() {
             families across India — service offered with love.
           </p>
 
-          {/* Social Media */}
           <div className="mt-5 flex gap-3">
             <a
-              href="https://www.facebook.com/people/Srisai-swamy-seva-foundation/61594044470080"
+              href={ORG.facebook}
               aria-label="Facebook"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
             >
@@ -54,7 +53,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.instagram.com/sssf_foundation?igsi=ZGltdmd4bHYzM2Nr"
+              href={ORG.instagram}
               aria-label="Instagram"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
             >
@@ -62,8 +61,8 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://x.com/SevaSwamy"
-              aria-label="Twitter"
+              href={ORG.x}
+              aria-label="X"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
             >
               <Twitter className="h-4 w-4" />
@@ -71,122 +70,125 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Explore */}
         <div>
           <h3 className="eyebrow !text-marigold">Explore</h3>
 
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
-              <Link
-                href="/about"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/about" className="footer-link transition-colors hover:text-marigold">
                 About us
               </Link>
             </li>
-
             <li>
-              <Link
-                href="/programs"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/programs" className="footer-link transition-colors hover:text-marigold">
                 Our programs
               </Link>
             </li>
-
             <li>
-              <Link
-                href="/gallery"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/impact" className="footer-link transition-colors hover:text-marigold">
+                Impact
+              </Link>
+            </li>
+            <li>
+              <Link href="/stories" className="footer-link transition-colors hover:text-marigold">
+                Beneficiary Stories
+              </Link>
+            </li>
+            <li>
+              <Link href="/case-studies" className="footer-link transition-colors hover:text-marigold">
+                Case Studies
+              </Link>
+            </li>
+            <li>
+              <Link href="/gallery" className="footer-link transition-colors hover:text-marigold">
                 Gallery
               </Link>
             </li>
-
             <li>
-              <Link
-                href="/events"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/events" className="footer-link transition-colors hover:text-marigold">
                 Events
+              </Link>
+            </li>
+            <li>
+              <Link href="/transparency" className="footer-link transition-colors hover:text-marigold">
+                Transparency
+              </Link>
+            </li>
+            <li>
+              <Link href="/financial-transparency" className="footer-link transition-colors hover:text-marigold">
+                Financial Transparency
+              </Link>
+            </li>
+            <li>
+              <Link href="/legal" className="footer-link transition-colors hover:text-marigold">
+                Legal & Compliance
+              </Link>
+            </li>
+            <li>
+              <Link href="/reviews" className="footer-link transition-colors hover:text-marigold">
+                Reviews
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Get Involved */}
         <div>
           <h3 className="eyebrow !text-marigold">Involved</h3>
 
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
-              <Link
-                href="/donate"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/donate" className="footer-link transition-colors hover:text-marigold">
                 Donate
               </Link>
             </li>
-
             <li>
-              <Link
-                href="/contact"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/volunteer" className="footer-link transition-colors hover:text-marigold">
                 Volunteer with us
               </Link>
             </li>
-
             <li>
-              <Link
-                href="/contact"
-                className="transition-colors hover:text-marigold"
-              >
+              <Link href="/contact" className="footer-link transition-colors hover:text-marigold">
                 Contact us
+              </Link>
+            </li>
+            <li>
+              <Link href="/legal" className="footer-link transition-colors hover:text-marigold">
+                Legal & Compliance
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Reach Us */}
         <div>
           <h3 className="eyebrow !text-marigold">Reach us</h3>
 
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-2.5">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-marigold" />
-              <span>Kolar, Chikkaballapur, India</span>
+              <span>{ORG.addressLine}</span>
             </li>
 
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 shrink-0 text-marigold" />
-              <a
-                href="tel:+919945216711"
-                className="transition-colors hover:text-marigold"
-              >
-                +91 99452 16711
+              <a href={`tel:${ORG.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-marigold">
+                {ORG.phone}
               </a>
             </li>
 
             <li className="flex items-center gap-2.5">
               <Mail className="h-4 w-4 shrink-0 text-marigold" />
-              <a
-                href="mailto:contact@srisaiswamysevafoundation.com"
-                className="break-all transition-colors hover:text-marigold"
-              >
-                contact@srisaiswamysevafoundation.com
+              <a href={`mailto:${ORG.email}`} className="break-all transition-colors hover:text-marigold">
+                {ORG.email}
               </a>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-ivory/10">
         <div className="container-seva flex flex-col items-center justify-between gap-2 py-5 text-xs text-ivory/50 md:flex-row">
           <p className="text-center md:text-left">
-            All rights reserved © {new Date().getFullYear()} Sri Sai Swamy
-            Seva Foundation. Powered by{" "}
+            All rights reserved © {new Date().getFullYear()} Sri Sai Swamy Seva Foundation. Powered by{" "}
             <a
               href="https://unitechlabs.io"
               target="_blank"
@@ -199,7 +201,7 @@ export default function Footer() {
           </p>
 
           <p className="text-center">
-            Approved by Ministry of Corporate Affairs · India
+            Registration, compliance, and related documentation status is shown on the legal page.
           </p>
         </div>
       </div>

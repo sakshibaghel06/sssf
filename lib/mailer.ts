@@ -35,12 +35,12 @@ export async function sendReceiptEmail(opts: {
     text:
       `Dear ${toName},\n\n` +
       `Thank you for your generous donation of Rs. ${amount.toLocaleString("en-IN")} to ${ORG.name}.\n` +
-      `Your official 80G receipt (#${receiptNumber}) is attached to this email as a PDF.\n\n` +
+      `Your donation receipt (#${receiptNumber}) is attached to this email as a PDF.\n\n` +
       `With gratitude,\n${ORG.name}\n${ORG.website}`,
     html:
       `<p>Dear ${toName},</p>` +
       `<p>Thank you for your generous donation of <strong>&#8377;${amount.toLocaleString("en-IN")}</strong> to ${ORG.name}.</p>` +
-      `<p>Your official 80G receipt (<strong>#${receiptNumber}</strong>) is attached to this email as a PDF.</p>` +
+      `<p>Your donation receipt (<strong>#${receiptNumber}</strong>) is attached to this email as a PDF.</p>` +
       `<p>With gratitude,<br/>${ORG.name}<br/><a href="https://${ORG.website}">${ORG.website}</a></p>`,
     attachments: [
       {
@@ -49,5 +49,33 @@ export async function sendReceiptEmail(opts: {
         contentType: "application/pdf",
       },
     ],
+  });
+}
+
+export async function sendContactEnquiry(opts: {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}) {
+  const { name, email, subject, message } = opts;
+
+  await transporter.sendMail({
+    from: `"${ORG.name.replace(" (Regd)", "")}" <${from}>`,
+    to: `${ORG.email}`,
+    replyTo: `${email}`,
+    subject: `Website contact enquiry: ${subject}`,
+    text:
+      `Website contact enquiry from ${name} (${email})\n\n` +
+      `Subject: ${subject}\n\n` +
+      `Message:\n${message}\n\n` +
+      `Source: ${ORG.website}`,
+    html:
+      `<p><strong>Website contact enquiry</strong></p>` +
+      `<p><strong>Name:</strong> ${name}</p>` +
+      `<p><strong>Email:</strong> ${email}</p>` +
+      `<p><strong>Subject:</strong> ${subject}</p>` +
+      `<p><strong>Message:</strong><br/>${message}</p>` +
+      `<p><strong>Source:</strong> ${ORG.website}</p>`,
   });
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ShieldCheck, ReceiptText, HandCoins } from "lucide-react";
+import { ShieldCheck, FileCheck2, BadgeCheck, WalletCards } from "lucide-react";
 import UnityDivider from "@/components/UnityDivider";
 import DonateForm from "@/components/DonateForm";
 
@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 const IMPACT = [
-  { amount: "₹500", impact: "Feeds a family of four for a week" },
-  { amount: "₹1,500", impact: "Covers school supplies for one child, one term" },
-  { amount: "₹5,000", impact: "Funds a health screening for 25 people" },
-  { amount: "₹15,000", impact: "Stocks a disaster relief kit for 10 families" },
+  { label: "Verified cost examples", detail: "Verified cost examples will be published here as supporting records become available." },
+  { label: "Program spending", detail: "Donation allocation by program area will be shared once verified financial records are ready for publication." },
+  { label: "Administrative spending", detail: "Operational support and non-program costs will be disclosed with the official reporting framework when available." },
+  { label: "Donation utilization", detail: "Utilization narratives and reporting periods will be published as verified records are finalized." },
 ];
 
 export default function DonatePage() {
@@ -41,14 +41,17 @@ export default function DonatePage() {
 
           <div className="space-y-8">
             <div className="rounded-2xl border border-maroon/10 dark:border-marigold/15 p-7">
-              <h2 className="font-display text-xl text-maroon dark:text-marigold">What your gift does</h2>
+              <h2 className="font-display text-xl text-maroon dark:text-marigold">Where donations go</h2>
               <ul className="mt-5 space-y-4">
                 {IMPACT.map((row) => (
-                  <li key={row.amount} className="flex items-start gap-4">
-                    <span className="shrink-0 rounded-full bg-marigold/15 px-3 py-1 text-sm font-semibold text-maroon dark:text-marigold">
-                      {row.amount}
+                  <li key={row.label} className="flex items-start gap-4 rounded-xl border border-maroon/10 bg-ivory-soft p-4 dark:border-marigold/15 dark:bg-charcoal-soft">
+                    <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-marigold/15 text-marigold">
+                      <BadgeCheck className="h-4 w-4" />
                     </span>
-                    <span className="text-sm text-sandalwood dark:text-ivory-soft/70 pt-1">{row.impact}</span>
+                    <span className="text-sm text-sandalwood dark:text-ivory-soft/70">
+                      <span className="mb-1 block font-semibold text-maroon dark:text-marigold">{row.label}</span>
+                      {row.detail}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -65,20 +68,32 @@ export default function DonatePage() {
                 </div>
               </div>
               <div className="flex gap-3.5">
-                <ReceiptText className="h-5 w-5 shrink-0 text-maroon dark:text-marigold mt-0.5" strokeWidth={1.75} />
+                <FileCheck2 className="h-5 w-5 shrink-0 text-maroon dark:text-marigold mt-0.5" strokeWidth={1.75} />
                 <div>
-                  <h3 className="font-display text-base text-maroon dark:text-ivory">Tax-deductible</h3>
+                  <h3 className="font-display text-base text-maroon dark:text-ivory">Receipt after payment</h3>
                   <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">
-                    Donations qualify for tax deduction under Section 80G. A receipt is emailed after every gift.
+                    A donation receipt is generated and emailed after successful payment verification.
                   </p>
                 </div>
               </div>
               <div className="flex gap-3.5">
-                <HandCoins className="h-5 w-5 shrink-0 text-maroon dark:text-marigold mt-0.5" strokeWidth={1.75} />
+                <WalletCards className="h-5 w-5 shrink-0 text-maroon dark:text-marigold mt-0.5" strokeWidth={1.75} />
                 <div>
-                  <h3 className="font-display text-base text-maroon dark:text-ivory">Other ways to give</h3>
+                  <h3 className="font-display text-base text-maroon dark:text-ivory">Verified data will be published here</h3>
                   <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">
-                    Bank transfer, in-kind donations, and corporate CSR partnerships — reach us via the contact page.
+                    Annual targets, program spending, and utilization summaries will be shared when official records are confirmed for publication.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-3.5">
+                <FileCheck2 className="h-5 w-5 shrink-0 text-maroon dark:text-marigold mt-0.5" strokeWidth={1.75} />
+                <div>
+                  <h3 className="font-display text-base text-maroon dark:text-ivory">See how we approach financial transparency</h3>
+                  <p className="mt-1 text-sm text-sandalwood dark:text-ivory-soft/70">
+                    <a href="/transparency" className="font-semibold text-maroon dark:text-marigold underline decoration-marigold/60 underline-offset-4">
+                      Transparency & Accountability
+                    </a>
                   </p>
                 </div>
               </div>

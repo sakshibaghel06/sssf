@@ -1,6 +1,6 @@
 import "server-only";
 import path from "path";
-import { Document, Page, View, Text, Image, StyleSheet, renderToBuffer } from "@react-pdf/renderer";
+import { Document, Page, View, Text, Image as PdfImage, StyleSheet, renderToBuffer } from "@react-pdf/renderer";
 import { ORG } from "./orgConfig";
 import { amountToWords, formatINR } from "./amountToWords";
 
@@ -145,7 +145,7 @@ function ReceiptPage({ data }: { data: ReceiptData }) {
     <Page size="A5" style={styles.page}>
       <View style={styles.box}>
         <View style={styles.headerRow}>
-          <Image src={logoPath} style={styles.logo} />
+          <PdfImage src={logoPath} style={styles.logo} />
           <View style={styles.headerText}>
             <Text style={styles.orgName}>{ORG.name}</Text>
             <Text style={styles.orgSub}>{`${ORG.addressLine} Tel. ${ORG.phone}`}</Text>
@@ -210,7 +210,7 @@ function ReceiptPage({ data }: { data: ReceiptData }) {
 
         <View style={styles.footer}>
           <Text style={styles.footerLine}>
-            This donation is eligible for deduction under Section 80G of the Income Tax Act, 1961.
+            Thank you for supporting Sri Sai Swamy Seva Foundation.
           </Text>
           <Text style={styles.footerPan}>PAN : {ORG.pan}</Text>
           <Text style={styles.footerNote}>

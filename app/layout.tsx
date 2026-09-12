@@ -47,6 +47,12 @@ export const metadata: Metadata = {
     locale: "en_IN",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: "Sri Sai Swamy Seva Foundation",
+    description:
+      "Hope, dignity, and brighter futures. Healthcare, food, education and disaster relief for communities across India.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

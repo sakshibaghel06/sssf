@@ -13,7 +13,9 @@ const NAV_LINKS = [
   { href: "/gallery", label: "Gallery" },
   { href: "/events", label: "Events" },
   { href: "/reviews", label: "Reviews" },
+  { href: "/volunteer", label: "Volunteer" },
   { href: "/contact", label: "Contact" },
+  { href: "/legal", label: "Legal" },
 ];
 
 export default function Header() {
@@ -21,7 +23,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-maroon/10 dark:border-marigold/10 bg-ivory/90 dark:bg-charcoal/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-maroon/10 bg-ivory/95 shadow-[0_1px_0_rgba(11,15,140,0.04)] backdrop-blur-md dark:border-marigold/10 dark:bg-charcoal/95">
       <div className="container-seva flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
           <Image
@@ -38,16 +40,16 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm tracking-wide transition-colors ${
+                className={`relative py-2 text-sm tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-marigold after:transition-transform hover:after:scale-x-100 ${
                   active
-                    ? "text-maroon dark:text-marigold font-semibold"
+                    ? "font-semibold text-maroon after:scale-x-100 dark:text-marigold"
                     : "text-sandalwood dark:text-ivory-soft/80 hover:text-maroon dark:hover:text-marigold"
                 }`}
               >
@@ -61,7 +63,7 @@ export default function Header() {
           <ThemeToggle />
           <Link
             href="/donate"
-            className="rounded-full bg-maroon dark:bg-marigold px-5 py-2.5 text-sm font-semibold text-ivory dark:text-charcoal transition-transform hover:scale-[1.03] hover:bg-maroon-light dark:hover:bg-marigold-light"
+            className="button-primary px-5 py-2.5"
           >
             Donate
           </Link>
@@ -70,7 +72,10 @@ export default function Header() {
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
           <button
+            type="button"
             aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-maroon/20 dark:border-marigold/30"
           >
@@ -79,8 +84,7 @@ export default function Header() {
         </div>
       </div>
 
-      {open && (
-        <div className="md:hidden border-t border-maroon/10 dark:border-marigold/10 bg-ivory dark:bg-charcoal">
+      <div id="mobile-menu" className={`mobile-menu md:hidden ${open ? "mobile-menu-open" : ""}`}>
           <nav className="container-seva flex flex-col py-4">
             {NAV_LINKS.map((link) => (
               <Link
@@ -101,7 +105,6 @@ export default function Header() {
             </Link>
           </nav>
         </div>
-      )}
     </header>
   );
 }

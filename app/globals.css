@@ -15,6 +15,17 @@ html.dark {
     @apply bg-ivory text-charcoal dark:bg-charcoal dark:text-ivory font-body antialiased transition-colors duration-300;
   }
 
+  input,
+  textarea,
+  select {
+    @apply transition-colors duration-200;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   h1, h2, h3, h4 {
     @apply font-display;
   }
@@ -55,4 +66,92 @@ html.dark {
 
 .container-seva {
   @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+}
+
+@layer components {
+  .button-primary,
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 ease-out;
+  }
+
+  .button-primary {
+    @apply bg-maroon text-ivory hover:-translate-y-0.5 hover:bg-maroon-light hover:shadow-lg dark:bg-marigold dark:text-charcoal dark:hover:bg-marigold-light;
+  }
+
+  .button-secondary {
+    @apply border border-maroon text-maroon hover:-translate-y-0.5 hover:bg-maroon/5 dark:border-marigold dark:text-marigold dark:hover:bg-marigold/10;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1), transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-band {
+    @apply bg-ivory-soft dark:bg-charcoal-soft;
+  }
+
+  .editorial-rule {
+    @apply h-px w-16 bg-marigold;
+  }
+
+  .footer-link {
+    @apply inline-block transition-transform duration-200 hover:translate-x-1;
+  }
+
+  .mobile-menu {
+    @apply max-h-0 overflow-hidden border-t border-maroon/10 bg-ivory opacity-0 transition-all duration-300 dark:border-marigold/10 dark:bg-charcoal;
+  }
+
+  .mobile-menu-open {
+    @apply max-h-[32rem] opacity-100;
+  }
+
+  .image-viewer {
+    animation: image-viewer-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .image-viewer-backdrop {
+    animation: image-viewer-backdrop-in 220ms ease-out both;
+  }
+
+  .image-viewer-frame {
+    animation: image-viewer-frame-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes image-viewer-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes image-viewer-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes image-viewer-frame-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .image-viewer,
+  .image-viewer-backdrop,
+  .image-viewer-frame {
+    animation: none;
+  }
 }

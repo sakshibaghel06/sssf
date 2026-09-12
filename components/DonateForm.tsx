@@ -6,11 +6,52 @@ import { Heart, Loader2 } from "lucide-react";
 
 const AMOUNTS = [500, 1500, 5000, 15000];
 
+type OrderApiResponse = {
+  orderId: string;
+  amount: number;
+  currency: string;
+  keyId: string;
+  donationId: string;
+  error?: string;
+};
+
+type VerifyApiResponse = {
+  success?: boolean;
+  receiptNumber?: string;
+  error?: string;
+};
+
+type RazorpayCheckoutHandlerResponse = {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+};
+
+type RazorpayPaymentHandler = (response: RazorpayCheckoutHandlerResponse) => Promise<void>;
+
+type RazorpayInstance = {
+  on: (event: "payment.failed", handler: () => void) => void;
+  open: () => void;
+};
+
 declare global {
   interface Window {
-    Razorpay: any;
+    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
   }
 }
+
+type RazorpayOptions = {
+  key: string;
+  amount: number;
+  currency: string;
+  order_id: string;
+  name: string;
+  description: string;
+  prefill: { name: string; email: string };
+  theme: { color: string };
+  handler: RazorpayPaymentHandler;
+  modal: { ondismiss: () => void };
+};
 
 type Status = "idle" | "processing" | "success" | "error";
 
@@ -50,7 +91,7 @@ export default function DonateForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, address, pan, amount: selectedAmount, frequency }),
       });
-      const orderData = await orderRes.json();
+      const orderData = (await orderRes.json()) as OrderApiResponse & { error?: string };
       if (!orderRes.ok) throw new Error(orderData.error || "Could not start the donation.");
 
       const razorpay = new window.Razorpay({
@@ -62,7 +103,7 @@ export default function DonateForm() {
         description: frequency === "monthly" ? "Monthly donation" : "One-time donation",
         prefill: { name, email },
         theme: { color: "#0B0F8C" },
-        handler: async (response: any) => {
+        handler: async (response: RazorpayCheckoutHandlerResponse) => {
           try {
             const verifyRes = await fetch("/api/donations/verify", {
               method: "POST",
@@ -73,14 +114,15 @@ export default function DonateForm() {
                 razorpay_signature: response.razorpay_signature,
               }),
             });
-            const verifyData = await verifyRes.json();
+            const verifyData = (await verifyRes.json()) as VerifyApiResponse;
             if (!verifyRes.ok || !verifyData.success) {
               throw new Error(verifyData.error || "We couldn't confirm your payment.");
             }
-            setReceiptNumber(verifyData.receiptNumber);
+            setReceiptNumber(verifyData.receiptNumber ?? null);
             setStatus("success");
-          } catch (err: any) {
-            setErrorMsg(err.message || "Payment succeeded but confirmation failed. We'll follow up by email.");
+          } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : "Payment succeeded but confirmation failed. We'll follow up by email.";
+            setErrorMsg(message);
             setStatus("error");
           }
         },
@@ -95,8 +137,9 @@ export default function DonateForm() {
       });
 
       razorpay.open();
-    } catch (err: any) {
-      setErrorMsg(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setErrorMsg(message);
       setStatus("error");
     }
   }
@@ -211,7 +254,7 @@ export default function DonateForm() {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="address" className="text-xs text-sandalwood dark:text-ivory-soft/60">Address (for your 80G receipt)</label>
+          <label htmlFor="address" className="text-xs text-sandalwood dark:text-ivory-soft/60">Address for receipt</label>
           <input
             id="address"
             type="text"
@@ -224,7 +267,7 @@ export default function DonateForm() {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="pan" className="text-xs text-sandalwood dark:text-ivory-soft/60">PAN (optional, for 80G tax deduction)</label>
+          <label htmlFor="pan" className="text-xs text-sandalwood dark:text-ivory-soft/60">PAN (optional for receipt and verification)</label>
           <input
             id="pan"
             type="text"

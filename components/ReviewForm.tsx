@@ -42,7 +42,7 @@ export default function ReviewForm() {
       }
 
       setSubmitted(true);
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please check your connection and try again.");
       setSubmitting(false);
     }

@@ -1,26 +1,46 @@
 "use client";
 
-import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { FormEvent, useState } from "react";
 
 export default function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [notice, setNotice] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "General inquiry",
+    message: "",
+  });
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
-  }
+    if (submitting) return;
 
-  if (submitted) {
-    return (
-      <div className="rounded-2xl border border-marigold/40 bg-ivory-soft dark:bg-charcoal-soft p-10 text-center h-fit">
-        <CheckCircle2 className="mx-auto h-8 w-8 text-maroon dark:text-marigold" strokeWidth={1.75} />
-        <h2 className="mt-4 font-display text-2xl text-maroon dark:text-marigold">Message sent.</h2>
-        <p className="mt-3 text-sm text-sandalwood dark:text-ivory-soft/70">
-          Thank you for reaching out — our team will get back to you within 2–3 business days.
-        </p>
-      </div>
-    );
+    setError("");
+    setNotice("");
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data.error || "Could not submit your message. Please try again.");
+        return;
+      }
+
+      setNotice("Thank you. Your enquiry has been submitted successfully. The foundation team will respond through the contact details provided in the website coordination record.");
+      setForm({ name: "", email: "", subject: "General inquiry", message: "" });
+    } catch {
+      setError("Could not submit your message. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -32,6 +52,8 @@ export default function ContactForm() {
             id="c-name"
             type="text"
             required
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
             className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
           />
         </div>
@@ -41,6 +63,8 @@ export default function ContactForm() {
             id="c-email"
             type="email"
             required
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
             className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
           />
         </div>
@@ -50,6 +74,8 @@ export default function ContactForm() {
         <label htmlFor="c-subject" className="text-xs text-sandalwood dark:text-ivory-soft/60">Subject</label>
         <select
           id="c-subject"
+          value={form.subject}
+          onChange={(e) => setForm({ ...form, subject: e.target.value })}
           className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
         >
           <option>General inquiry</option>
@@ -66,16 +92,31 @@ export default function ContactForm() {
           id="c-message"
           required
           rows={5}
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
           className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold resize-none"
         />
       </div>
 
       <button
         type="submit"
-        className="mt-7 w-full rounded-full bg-maroon dark:bg-marigold py-3.5 text-sm font-semibold text-ivory dark:text-charcoal transition-transform hover:scale-[1.01] sm:w-auto sm:px-10"
+        disabled={submitting}
+        className="mt-7 w-full rounded-full bg-maroon dark:bg-marigold py-3.5 text-sm font-semibold text-ivory dark:text-charcoal transition-transform hover:scale-[1.01] sm:w-auto sm:px-10 disabled:opacity-70"
       >
-        Send message
+        {submitting ? "Sending..." : "Send message"}
       </button>
+
+      {error ? (
+        <p className="mt-5 rounded-xl border border-vermillion/40 bg-vermillion/8 px-4 py-3 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/80">
+          {error}
+        </p>
+      ) : null}
+
+      {notice ? (
+        <p className="mt-5 rounded-xl border border-marigold/30 bg-marigold/8 px-4 py-3 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/80">
+          {notice}
+        </p>
+      ) : null}
     </form>
   );
 }
