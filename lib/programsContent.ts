@@ -18,16 +18,24 @@ export type ProgramContent = {
   tag: string;
   shortIntro: string;
   problem: string;
-  whatWeDo: string[];
-  whoBenefits: string[];
-  locations: string;
-  impact: string;
+  objectives?: string[];
+  activities?: string[];
+  whoBenefits?: string[];
+  beneficiaries?: string[];
+  locations?: string;
+  geography?: string;
+  trackRecord?: string;
+  annualBudget?: string;
+  monitoring?: string[];
+  impact?: string;
+  whatWeDo?: string[];
   photos: Array<{
     src: string;
     alt: string;
     caption: string;
   }>;
   howToHelp: string[];
+  contact?: string[];
   image: string;
   icon: LucideIcon;
   accent: "sky" | "magenta" | "leaf" | "rust";
@@ -35,30 +43,104 @@ export type ProgramContent = {
   ctaHref: string;
 };
 
-export const programsContent: ProgramContent[] = [
+export const priorityPrograms: ProgramContent[] = [
+  {
+    slug: "health",
+    title: "Health",
+    tag: "Health",
+    shortIntro: "Rural healthcare access through general health camps, eye care, dental check-ups, preventive awareness, and elder and disability support in Chintamani Taluk and Srinivasapura Taluk.",
+    problem: "Many families in Chintamani Taluk and Srinivasapura Taluk continue to face limited access to primary healthcare, preventive screening, and regular support for elderly and differently-abled persons.",
+    objectives: [
+      "Improve access to general healthcare and referral support for rural communities.",
+      "Provide free eye camps and dental check-ups to underserved households.",
+      "Strengthen preventive health awareness and support for elderly and disability care needs.",
+    ],
+    activities: [
+      "General health camps and basic clinical support in rural communities.",
+      "Free eye camps and dental check-ups.",
+      "Preventive health awareness sessions and community health education.",
+      "Support for elderly and disability care through outreach and coordination.",
+    ],
+    beneficiaries: [
+      "Rural families facing healthcare access barriers.",
+      "Older persons and persons with disabilities.",
+      "Community members in Chintamani Taluk and Srinivasapura Taluk.",
+    ],
+    geography: "Chintamani Taluk and Srinivasapura Taluk, Karnataka.",
+    trackRecord: "The initiative builds on the Foundation’s existing health outreach work and the audited-account figures maintained in its public records. Historical track-record information should be read alongside the audited financial records rather than treated as a forecast.",
+    annualBudget: "Indicative annual budget: ₹10,50,000",
+    monitoring: [
+      "Field coordination and activity documentation for camps and outreach events.",
+      "Review of beneficiary reach, service delivery and resource use against annual plans.",
+      "Reporting through the Foundation’s public records and partner communication channels.",
+    ],
+    whoBenefits: [
+      "Rural families facing healthcare access barriers.",
+      "Older persons and persons with disabilities.",
+      "Community members in Chintamani Taluk and Srinivasapura Taluk.",
+    ],
+    locations: "Chintamani Taluk and Srinivasapura Taluk, Karnataka.",
+    impact: "Track record and audited-account figures reflect historical health outreach work. These figures are distinct from the indicative annual budget for planned future work.",
+    photos: [...foundationProgramPhotos.healthcare],
+    howToHelp: [
+      "Support medical camp logistics, screenings, medicines and outreach coordination.",
+      "Contribute toward preventive healthcare, disability care and elder support.",
+      "Partner with the Foundation to strengthen rural healthcare access.",
+    ],
+    contact: [
+      "Contact the Foundation through the official contact page for current coordination and partnership information.",
+    ],
+    image: foundationProgramPhotos.healthcare[0].src,
+    icon: Stethoscope,
+    accent: "sky",
+    ctaLabel: "Support health",
+    ctaHref: "/donate",
+  },
   {
     slug: "education",
     title: "Education",
     tag: "Education",
-    shortIntro: "Formal and non-formal education, school improvement, school materials, and career guidance for rural and urban poor students.",
-    problem: "The source identifies education and school support needs for children, students, and rural and urban communities requiring improved access to learning and opportunity.",
-    whatWeDo: [
-      "The source-supported educational work includes formal and non-formal education, rural education, career guidance for rural and urban poor students, and distribution of school bags and educational materials.",
-      "The source also describes plastering and painting of government school buildings and renovation of decayed school compound walls.",
+    shortIntro: "Government school infrastructure improvement through repair, plastering and painting, learning support, mentoring, and community mobilisation in Chintamani and Srinivasapura taluks.",
+    problem: "Government schools in Chintamani and Srinivasapura taluks need practical infrastructure support and resource inputs to maintain a safe, dignified, and functioning learning environment.",
+    objectives: [
+      "Improve school infrastructure through repair, plastering and painting.",
+      "Support students with school bags, books and stationery.",
+      "Facilitate career guidance and mentorship and mobilise community and volunteer support.",
+    ],
+    activities: [
+      "Repair, plastering and painting of government school buildings and facilities.",
+      "Distribution of school bags, books and stationery.",
+      "Career guidance and mentorship for students.",
+      "Community and volunteer mobilisation for school improvement.",
+    ],
+    beneficiaries: [
+      "Government school students and teachers.",
+      "Students in Chintamani and Srinivasapura taluks.",
+      "Families and communities seeking stronger school infrastructure and student support.",
+    ],
+    geography: "Chintamani and Srinivasapura taluks, Karnataka.",
+    trackRecord: "This initiative builds on the Foundation’s existing education engagement and public documentation of school support activity. Historical records should be distinguished from proposed annual planning estimates.",
+    annualBudget: "Indicative annual budget: ₹8,00,000",
+    monitoring: [
+      "School-wise activity tracking and documentation of repair and support work.",
+      "Verification of student materials distribution and school engagement records.",
+      "Reporting against annual plan and community coordination.",
     ],
     whoBenefits: [
-      "Rural and urban poor students.",
-      "Children in need, adolescent girls, and other students seeking learning continuity and opportunity.",
+      "Government school students and teachers.",
+      "Students in Chintamani and Srinivasapura taluks.",
+      "Families and communities seeking stronger school infrastructure and student support.",
     ],
-    locations: "Rural and urban areas of Chikkaballapura district; Rural and urban areas of Kolar district; Throughout India in general.",
-    impact: "The source provides activity examples such as school building improvement and educational-material distribution. Those examples are presented as activity context, not as cumulative impact metrics.",
-    photos: [
-      ...foundationProgramPhotos.education,
-    ],
+    locations: "Chintamani and Srinivasapura taluks, Karnataka.",
+    impact: "Track record reflects the Foundation’s school support work, while this proposal sets out the planned annual budget and activity scope for future support.",
+    photos: [...foundationProgramPhotos.education],
     howToHelp: [
-      "Contact the foundation for verified education program coordination.",
-      "Support education work through donation and program coordination when documented.",
-      "Share verified project records that can be added to the public program record.",
+      "Support school infrastructure repair, stationery and student resources.",
+      "Volunteer with school engagement and community mobilisation efforts.",
+      "Partner with the Foundation to strengthen government school support.",
+    ],
+    contact: [
+      "Contact the Foundation through the official contact page for current coordination and partnership information.",
     ],
     image: foundationProgramPhotos.education[0].src,
     icon: GraduationCap,
@@ -67,10 +149,116 @@ export const programsContent: ProgramContent[] = [
     ctaHref: "/donate",
   },
   {
+    slug: "women-empowerment",
+    title: "Women Empowerment",
+    tag: "Women Empowerment",
+    shortIntro: "Vocational skills training, Self Help Groups, menstrual hygiene support, and leadership development for women in distress and adolescent girls in Chintamani and Srinivasapura taluks.",
+    problem: "Women and adolescent girls in these taluks often need access to livelihood pathways, confidence-building platforms, hygiene support, and social protection in times of distress.",
+    objectives: [
+      "Strengthen vocational skills and livelihood pathways for women.",
+      "Support Self Help Groups and community-based women’s networks.",
+      "Promote menstrual hygiene and adolescent girl support.",
+      "Encourage recognition, sport and leadership opportunities for women.",
+    ],
+    activities: [
+      "Vocational skills training for rural women.",
+      "Support for Self Help Groups and community mobilisation.",
+      "Menstrual hygiene awareness and adolescent girl support.",
+      "Recognition, sport and leadership platform development for women.",
+    ],
+    beneficiaries: [
+      "Women in distress.",
+      "Rural women seeking skills, livelihood support and confidence building.",
+      "Adolescent girls and women in Chintamani and Srinivasapura taluks.",
+    ],
+    geography: "Chintamani and Srinivasapura taluks, Karnataka.",
+    trackRecord: "The proposal refers to the Foundation’s existing SHG investment information and women-focused support work. Historical SHG investment and past support activity should be treated as track record, not as the proposed annual budget.",
+    annualBudget: "Indicative annual budget: ₹7,50,000",
+    monitoring: [
+      "Tracking of SHG and vocational training participation.",
+      "Documentation of menstrual hygiene and leadership support activities.",
+      "Review of benefit reach and annual program implementation.",
+    ],
+    whoBenefits: [
+      "Women in distress.",
+      "Rural women seeking skills, livelihood support and confidence building.",
+      "Adolescent girls and women in Chintamani and Srinivasapura taluks.",
+    ],
+    locations: "Chintamani and Srinivasapura taluks, Karnataka.",
+    impact: "Historical SHG investment information and women-focused support work are part of the track record. The annual budget below reflects the proposed plan for future implementation.",
+    photos: [...foundationProgramPhotos.volunteers, ...foundationProgramPhotos.events].slice(0, 4),
+    howToHelp: [
+      "Support vocational training, SHG coordination and community mobilisation.",
+      "Contribute toward menstrual hygiene support and leadership development.",
+      "Partner with the Foundation to strengthen women’s welfare and livelihoods.",
+    ],
+    contact: [
+      "Contact the Foundation through the official contact page for current coordination and partnership information.",
+    ],
+    image: foundationProgramPhotos.volunteers[0].src,
+    icon: Users,
+    accent: "magenta",
+    ctaLabel: "Support women empowerment",
+    ctaHref: "/donate",
+  },
+  {
+    slug: "feeding-hunger",
+    title: "Feeding Hunger",
+    tag: "Feeding Hunger",
+    shortIntro: "School meal support, dry ration kits, and volunteer-led feeding for poor school children, food-insecure families, elderly persons and disabled persons in Chintamani and Srinivasapura taluks.",
+    problem: "Schoolchildren, low-income families, and elderly or disabled persons in Chintamani and Srinivasapura taluks face recurring food insecurity and a need for reliable, practical support.",
+    objectives: [
+      "Support meals for poor school children.",
+      "Distribute dry ration kits to food-insecure families.",
+      "Provide feeding support for elderly and disadvantaged persons.",
+      "Strengthen community kitchen and volunteer-led food distribution.",
+    ],
+    activities: [
+      "School meal support for poor children.",
+      "Dry ration kit distribution to food-insecure families.",
+      "Elderly and disadvantaged feeding support.",
+      "Community kitchen and volunteer drives.",
+    ],
+    beneficiaries: [
+      "Poor school children.",
+      "Food-insecure families.",
+      "Elderly and disabled persons in need of regular feeding support.",
+    ],
+    geography: "Chintamani and Srinivasapura taluks, Karnataka.",
+    trackRecord: "The Foundation’s existing support includes 150+ students/families and 34+ disadvantaged elderly individuals. This is track record and historical support, not the indicative future annual budget.",
+    annualBudget: "Indicative annual budget: ₹12,00,000",
+    monitoring: [
+      "Beneficiary documentation and distribution records for meal and ration support.",
+      "Volunteer coordination and kitchen/community drive reporting.",
+      "Annual review against planned support targets.",
+    ],
+    whoBenefits: [
+      "Poor school children.",
+      "Food-insecure families.",
+      "Elderly and disabled persons in need of regular feeding support.",
+    ],
+    locations: "Chintamani and Srinivasapura taluks, Karnataka.",
+    impact: "The existing support includes more than 150 students/families and 34+ disadvantaged elderly individuals. These figures reflect historical support and are distinct from the proposed annual budget.",
+    photos: [...foundationProgramPhotos.annadanam],
+    howToHelp: [
+      "Support meal distribution, dry ration kits and community kitchen logistics.",
+      "Volunteer in food drives and support coordination.",
+      "Contribute toward feeding support for poor children and elderly persons.",
+    ],
+    contact: [
+      "Contact the Foundation through the official contact page for current coordination and partnership information.",
+    ],
+    image: foundationProgramPhotos.annadanam[0].src,
+    icon: Utensils,
+    accent: "rust",
+    ctaLabel: "Support feeding hunger",
+    ctaHref: "/donate",
+  },
+  {
     slug: "healthcare",
     title: "Healthcare",
     tag: "Healthcare",
-    shortIntro: "Rural health services and general rural health camps for underserved communities.",
+    shortIntro: "Healthcare outreach, rural health camp and welfare support information for Sri Sai Swamy Seva Foundation.",
     problem: "The source supports healthcare and welfare activity that responds to community health needs through field healthcare services.",
     whatWeDo: [
       "The source identifies general rural health camps as a healthcare activity example.",
@@ -82,9 +270,7 @@ export const programsContent: ProgramContent[] = [
     ],
     locations: "Rural and urban areas of Chikkaballapura district; Rural and urban areas of Kolar district; Throughout India in general.",
     impact: "The organization’s source examples include a general rural health camp and a free food and healthcare support example for 34 disadvantaged elderly people. These are activity examples and should not be converted into total impact counters.",
-    photos: [
-      ...foundationProgramPhotos.healthcare,
-    ],
+    photos: [...foundationProgramPhotos.healthcare],
     howToHelp: [
       "Donate toward healthcare outreach and community health support.",
       "Coordinate verified healthcare support where field documentation is available.",
@@ -113,9 +299,7 @@ export const programsContent: ProgramContent[] = [
     ],
     locations: "Rural and urban areas of Chikkaballapura district; Rural and urban areas of Kolar district; Throughout India in general.",
     impact: "The source example describes free food and dry-ration support for 150 poor students and their families and free food and healthcare support for 34 disadvantaged elderly people. These numbers are presented as activity examples, not cumulative impact statistics.",
-    photos: [
-      ...foundationProgramPhotos.annadanam,
-    ],
+    photos: [...foundationProgramPhotos.annadanam],
     howToHelp: [
       "Donate toward food support and hunger-relief coordination.",
       "Volunteer to help organize or support practical food service activities.",
@@ -125,35 +309,6 @@ export const programsContent: ProgramContent[] = [
     icon: Utensils,
     accent: "rust",
     ctaLabel: "Support annadanam",
-    ctaHref: "/donate",
-  },
-  {
-    slug: "women-empowerment",
-    title: "Women Empowerment",
-    tag: "Women & Families",
-    shortIntro: "Women in distress, rural livelihood, menstrual hygiene awareness, and vocational skills training for rural women.",
-    problem: "The source identifies women in distress and rural livelihood as important thematic areas requiring attention and sustainable development support.",
-    whatWeDo: [
-      "The source-supported activity examples include job-oriented vocational skills training for rural women and menstrual hygiene awareness with sanitary pad distribution for adolescent rural girl children.",
-      "The foundation’s program model connects women’s empowerment, education, health awareness, rural development, and livelihood support.",
-    ],
-    whoBenefits: [
-      "Women in distress.",
-      "Rural women who need vocational skills and livelihood opportunity.",
-      "Adolescent rural girl children who need menstrual hygiene awareness and sanitary pad distribution.",
-    ],
-    locations: "Rural and urban areas of Chikkaballapura district; Rural and urban areas of Kolar district; Throughout India in general.",
-    impact: "The source-supported activity examples are vocational training and menstrual hygiene awareness and sanitary pad distribution. These are activity examples and should not be converted into unsupported cumulative impact numbers.",
-    photos: [],
-    howToHelp: [
-      "Donate toward women-centered welfare, livelihood, and health awareness initiatives.",
-      "Volunteer or support awareness and community livelihood work where verified.",
-      "Contact the foundation for verified program details and documentation.",
-    ],
-    image: "",
-    icon: Users,
-    accent: "magenta",
-    ctaLabel: "Support women empowerment",
     ctaHref: "/donate",
   },
   {
@@ -173,9 +328,7 @@ export const programsContent: ProgramContent[] = [
     ],
     locations: "Rural and urban areas of Chikkaballapura district; Rural and urban areas of Kolar district; Throughout India in general.",
     impact: "The source identifies child welfare themes and awareness work. No unsupported child-impact statistics are added.",
-    photos: [
-      ...foundationProgramPhotos.childWelfare,
-    ],
+    photos: [...foundationProgramPhotos.childWelfare],
     howToHelp: [
       "Donate to support child-focused welfare, education continuity, and awareness initiatives.",
       "Volunteer to participate in child-focused awareness and educational activities where verified.",
@@ -241,8 +394,19 @@ export const programsContent: ProgramContent[] = [
   },
 ];
 
+export const priorityProgramLinks = [
+  { href: "/health", label: "Health" },
+  { href: "/education", label: "Education" },
+  { href: "/women-empowerment", label: "Women Empowerment" },
+  { href: "/feeding-hunger", label: "Feeding Hunger" },
+];
+
+export const priorityProgramSlugs = priorityProgramLinks.map((link) => link.href.replace("/", ""));
+
+export const programsContent: ProgramContent[] = priorityPrograms.filter((program) => priorityProgramSlugs.includes(program.slug));
+
 export const programDetails = Object.fromEntries(
-  programsContent.map((p) => [p.slug, p])
+  priorityPrograms.map((p) => [p.slug, p])
 ) as Record<string, ProgramContent>;
 
-export const programMap = new Map(programsContent.map((p) => [p.slug, p]));
+export const programMap = new Map(priorityPrograms.map((p) => [p.slug, p]));

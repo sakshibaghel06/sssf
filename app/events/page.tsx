@@ -25,7 +25,7 @@ export default function EventsPage() {
             Community Events &amp; Seva Activities
           </h1>
           <p className="mt-6 text-base leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-            The foundation publishes verified event details as they are confirmed and approved. Until then, this section remains intentionally structured to show where upcoming and past activity records will appear.
+            The foundation publishes verified event details as they are confirmed and approved. Until then, this section remains intentionally structured to show where upcoming and past activity records will appear, while keeping future event records ready for publication without redesign.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href="/volunteer" className="rounded-full bg-maroon px-6 py-3 text-sm font-semibold text-ivory dark:bg-marigold dark:text-charcoal">Volunteer</Link>

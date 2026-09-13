@@ -4,7 +4,6 @@ import Image from "next/image";
 import { ArrowRight, ClipboardCheck, MapPin, BarChart3 } from "lucide-react";
 import PendingContentState from "@/components/PendingContentState";
 import Reveal from "@/components/Reveal";
-import { caseStudiesContent } from "@/lib/caseStudiesContent";
 import { beneficiaryStoriesContent } from "@/lib/beneficiaryStoriesContent";
 import { foundationProgramPhotos } from "@/lib/foundationPhotos";
 import { programsContent } from "@/lib/programsContent";
@@ -114,38 +113,28 @@ export default function ImpactPage() {
           </div>
         </div>
         <div className="mt-8 rounded-[2rem] border border-maroon/10 dark:border-marigold/15 bg-white/50 dark:bg-charcoal-soft/50 p-8">
-          {caseStudiesContent.length === 0 ? (
-            <div className="space-y-5">
-              <p className="text-base leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-                Project stories are being documented. Detailed case studies will be published as individual Foundation projects are verified and documented.
-              </p>
-              <div className="rounded-2xl border border-maroon/10 dark:border-marigold/15 bg-ivory-soft/60 p-5 dark:bg-charcoal-soft/30">
-                <h3 className="font-display text-xl text-maroon dark:text-ivory">A case study looks closely at one Foundation project</h3>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-                  <li>• Challenge</li>
-                  <li>• Foundation’s Work</li>
-                  <li>• Resources</li>
-                  <li>• Before → After</li>
-                  <li>• Community Voice</li>
-                  <li>• Impact</li>
-                </ul>
+          <article className="rounded-[1.75rem] border border-maroon/10 bg-ivory-soft p-5 dark:border-marigold/15 dark:bg-charcoal-soft/50">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sandalwood/70 dark:text-ivory-soft/70">Featured case study</p>
+                <h3 className="mt-2 font-display text-2xl text-maroon dark:text-ivory">Government School Development & Community Action</h3>
               </div>
+              <span className="rounded-full border border-maroon/10 bg-white/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-sandalwood dark:border-marigold/15 dark:bg-charcoal dark:text-ivory-soft/70">
+                Verified activity
+              </span>
             </div>
-          ) : (
-            <div className="grid gap-4">
-              {caseStudiesContent.map((study) => (
-                <article key={study.title} className="rounded-2xl border border-maroon/10 dark:border-marigold/15 p-5">
-                  <div className="flex items-center gap-4">
-                    <span className="font-display text-lg text-maroon dark:text-ivory">{study.title}</span>
-                    <span className="text-xs uppercase tracking-[0.16em] text-sandalwood dark:text-ivory-soft/60">{study.program || "Program pending"}</span>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-                    {study.location || "Location pending"} · {study.year || "Year pending"}
-                  </p>
-                </article>
-              ))}
+            <p className="mt-4 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/75">
+              The Foundation’s school-development work in rural areas of Chintamani and Srinivasapura taluks includes plastering and painting of Government school buildings, renovation of decayed school compound walls, and educational support materials for students where appropriate.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/case-studies" className="rounded-full bg-maroon px-5 py-2.5 text-sm font-semibold text-ivory dark:bg-marigold dark:text-charcoal">
+                Read the case study
+              </Link>
+              <Link href="/education" className="rounded-full border border-maroon px-5 py-2.5 text-sm font-semibold text-maroon dark:border-marigold dark:text-marigold">
+                View Education programme
+              </Link>
             </div>
-          )}
+          </article>
         </div>
       </section>
 

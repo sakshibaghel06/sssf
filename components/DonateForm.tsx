@@ -166,14 +166,14 @@ export default function DonateForm() {
         onLoad={() => setScriptReady(true)}
         strategy="afterInteractive"
       />
-      <form onSubmit={handleSubmit} className="rounded-2xl border border-maroon/10 dark:border-marigold/15 p-7 md:p-9">
-        <div className="flex rounded-full border border-maroon/20 dark:border-marigold/25 p-1 w-fit">
+      <form onSubmit={handleSubmit} className="rounded-[28px] border border-maroon/10 bg-ivory-soft p-5 shadow-[0_18px_40px_rgba(11,15,140,0.04)] dark:border-marigold/15 dark:bg-charcoal-soft md:p-7 lg:min-h-full">
+        <div className="flex w-fit rounded-full border border-maroon/20 bg-white/60 p-1 dark:border-marigold/25 dark:bg-charcoal">
           <button
             type="button"
             onClick={() => setFrequency("once")}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
               frequency === "once"
-                ? "bg-maroon dark:bg-marigold text-ivory dark:text-charcoal"
+                ? "bg-maroon text-ivory shadow-sm dark:bg-marigold dark:text-charcoal"
                 : "text-sandalwood dark:text-ivory-soft/70"
             }`}
           >
@@ -182,9 +182,9 @@ export default function DonateForm() {
           <button
             type="button"
             onClick={() => setFrequency("monthly")}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
               frequency === "monthly"
-                ? "bg-maroon dark:bg-marigold text-ivory dark:text-charcoal"
+                ? "bg-maroon text-ivory shadow-sm dark:bg-marigold dark:text-charcoal"
                 : "text-sandalwood dark:text-ivory-soft/70"
             }`}
           >
@@ -201,10 +201,10 @@ export default function DonateForm() {
                 setAmount(a);
                 setCustomAmount("");
               }}
-              className={`rounded-xl border py-3 text-sm font-semibold transition-colors ${
+              className={`rounded-xl border py-3.5 text-sm font-semibold transition-all ${
                 !customAmount && amount === a
-                  ? "border-marigold bg-marigold/15 text-maroon dark:text-marigold"
-                  : "border-maroon/15 dark:border-marigold/20 text-sandalwood dark:text-ivory-soft/70 hover:border-marigold/50"
+                  ? "border-marigold bg-marigold/15 text-maroon shadow-sm ring-1 ring-marigold/30 dark:text-marigold"
+                  : "border-maroon/15 bg-white/60 text-sandalwood hover:border-marigold/50 hover:bg-marigold/5 dark:border-marigold/20 dark:bg-charcoal dark:text-ivory-soft/80"
               }`}
             >
               ₹{a.toLocaleString("en-IN")}
@@ -212,8 +212,8 @@ export default function DonateForm() {
           ))}
         </div>
 
-        <div className="mt-4">
-          <label htmlFor="custom-amount" className="text-xs text-sandalwood dark:text-ivory-soft/60">
+        <div className="mt-5">
+          <label htmlFor="custom-amount" className="text-[11px] font-medium uppercase tracking-[0.16em] text-sandalwood dark:text-ivory-soft/60">
             Or enter a custom amount (₹)
           </label>
           <input
@@ -224,37 +224,37 @@ export default function DonateForm() {
             value={customAmount}
             onChange={(e) => setCustomAmount(e.target.value)}
             placeholder="e.g. 2500"
-            className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="mt-2 h-12 w-full rounded-xl border border-maroon/15 bg-white/60 px-4 text-sm text-charcoal outline-none transition focus:border-marigold focus:ring-2 focus:ring-marigold/20 dark:border-marigold/20 dark:bg-charcoal dark:text-ivory"
           />
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="name" className="text-xs text-sandalwood dark:text-ivory-soft/60">Full name</label>
+            <label htmlFor="name" className="text-[11px] font-medium uppercase tracking-[0.16em] text-sandalwood dark:text-ivory-soft/60">Full name</label>
             <input
               id="name"
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+              className="mt-2 h-12 w-full rounded-xl border border-maroon/15 bg-white/60 px-4 text-sm text-charcoal outline-none transition focus:border-marigold focus:ring-2 focus:ring-marigold/20 dark:border-marigold/20 dark:bg-charcoal dark:text-ivory"
             />
           </div>
           <div>
-            <label htmlFor="email" className="text-xs text-sandalwood dark:text-ivory-soft/60">Email</label>
+            <label htmlFor="email" className="text-[11px] font-medium uppercase tracking-[0.16em] text-sandalwood dark:text-ivory-soft/60">Email</label>
             <input
               id="email"
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+              className="mt-2 h-12 w-full rounded-xl border border-maroon/15 bg-white/60 px-4 text-sm text-charcoal outline-none transition focus:border-marigold focus:ring-2 focus:ring-marigold/20 dark:border-marigold/20 dark:bg-charcoal dark:text-ivory"
             />
           </div>
         </div>
 
         <div className="mt-4">
-          <label htmlFor="address" className="text-xs text-sandalwood dark:text-ivory-soft/60">Address for receipt</label>
+          <label htmlFor="address" className="text-[11px] font-medium uppercase tracking-[0.16em] text-sandalwood dark:text-ivory-soft/60">Address for receipt</label>
           <input
             id="address"
             type="text"
@@ -262,12 +262,12 @@ export default function DonateForm() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="House / street, city, PIN"
-            className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="mt-2 h-12 w-full rounded-xl border border-maroon/15 bg-white/60 px-4 text-sm text-charcoal outline-none transition focus:border-marigold focus:ring-2 focus:ring-marigold/20 dark:border-marigold/20 dark:bg-charcoal dark:text-ivory"
           />
         </div>
 
         <div className="mt-4">
-          <label htmlFor="pan" className="text-xs text-sandalwood dark:text-ivory-soft/60">PAN (optional for receipt and verification)</label>
+          <label htmlFor="pan" className="text-[11px] font-medium uppercase tracking-[0.16em] text-sandalwood dark:text-ivory-soft/60">PAN (optional)</label>
           <input
             id="pan"
             type="text"
@@ -275,7 +275,7 @@ export default function DonateForm() {
             onChange={(e) => setPan(e.target.value.toUpperCase())}
             placeholder="e.g. ABCDE1234F"
             maxLength={10}
-            className="mt-2 w-full rounded-xl border border-maroon/15 dark:border-marigold/20 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold uppercase"
+            className="mt-2 h-12 w-full rounded-xl border border-maroon/15 bg-white/60 px-4 text-sm uppercase text-charcoal outline-none transition focus:border-marigold focus:ring-2 focus:ring-marigold/20 dark:border-marigold/20 dark:bg-charcoal dark:text-ivory"
           />
         </div>
 
@@ -286,7 +286,7 @@ export default function DonateForm() {
         <button
           type="submit"
           disabled={status === "processing"}
-          className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-maroon dark:bg-marigold py-3.5 text-sm font-semibold text-ivory dark:text-charcoal transition-transform hover:scale-[1.01] disabled:opacity-60 disabled:hover:scale-100"
+          className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-maroon px-5 py-3.5 text-sm font-semibold text-ivory shadow-[0_14px_24px_rgba(11,15,140,0.18)] transition-all hover:-translate-y-0.5 hover:bg-maroon-light disabled:opacity-60 disabled:hover:translate-y-0 dark:bg-marigold dark:text-charcoal dark:hover:bg-marigold-light"
         >
           {status === "processing" && <Loader2 className="h-4 w-4 animate-spin" />}
           Donate ₹{selectedAmount ? selectedAmount.toLocaleString("en-IN") : "0"}

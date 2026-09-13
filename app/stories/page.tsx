@@ -39,9 +39,9 @@ export default function StoriesPage() {
               <div className="grid gap-6 lg:grid-cols-2">
                 <PendingContentState
                   icon={HeartHandshake}
-                  title="Real stories will be shared here as they are verified and published."
+                  title="Community stories are being verified before publication."
                   description={beneficiaryStoriesStatus}
-                  status="Verification pending"
+                  status="Verification-first publishing"
                   ctaLabel="Explore Our Programs"
                   ctaHref="/programs"
                 />
@@ -49,18 +49,18 @@ export default function StoriesPage() {
                 <div className="rounded-[2rem] border border-maroon/10 bg-white/60 p-8 dark:border-marigold/15 dark:bg-charcoal-soft/60">
                   <div className="flex items-center gap-3">
                     <FileText className="h-5 w-5 text-marigold" />
-                    <h3 className="font-display text-2xl text-maroon dark:text-ivory">Story structure preview</h3>
+                    <h3 className="font-display text-2xl text-maroon dark:text-ivory">What will be published when verified</h3>
                   </div>
                   <ul className="mt-6 space-y-3 text-sm leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-                    <li>• The Person</li>
-                    <li>• The Challenge</li>
-                    <li>• Support Received</li>
-                    <li>• The Result</li>
-                    <li>• Their Voice</li>
+                    <li>• The person and their situation</li>
+                    <li>• The challenge and the support context</li>
+                    <li>• The assistance received</li>
+                    <li>• The result and the relevant evidence</li>
+                    <li>• Consent and verification status</li>
                   </ul>
                   <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-maroon dark:text-marigold">
                     <ArrowRight className="h-4 w-4" />
-                    Community stories will be shared here as they are verified and published.
+                    Stories will be published only when consent and supporting records are available.
                   </div>
                 </div>
               </div>

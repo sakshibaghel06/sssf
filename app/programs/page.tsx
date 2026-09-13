@@ -18,10 +18,10 @@ export default function ProgramsPage() {
         <div className="max-w-2xl">
           <span className="eyebrow">Programs</span>
           <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon dark:text-ivory leading-tight">
-            Seva, in practice.
+            Four priority initiatives.
           </h1>
           <p className="mt-6 text-base leading-relaxed text-sandalwood dark:text-ivory-soft/70">
-            Seven areas of ongoing work, each shaped by what the communities we serve have told us they need most.
+            Our current priority initiatives focus on health, education, women empowerment, and feeding hunger in the communities we serve.
           </p>
           <div className="mt-8">
             <Link href="/impact" className="rounded-full border border-maroon dark:border-marigold px-6 py-3 text-sm font-semibold text-maroon dark:text-marigold">
@@ -37,7 +37,7 @@ export default function ProgramsPage() {
 
       <section className="py-16 md:py-20">
         <div className="container-seva">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {programsContent.map((program) => (
               <Reveal key={program.slug}>
                 <ProgramCard

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HeartHandshake, Stethoscope, GraduationCap, ShieldPlus, Users, ArrowRight, Flame } from "lucide-react";
+import { HeartHandshake, Stethoscope, GraduationCap, Users, ArrowRight } from "lucide-react";
 import UnityDivider from "@/components/UnityDivider";
 import SevaMark from "@/components/SevaMark";
 import ProgramCard from "@/components/ProgramCard";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import Testimonials from "@/components/Testimonials";
 import Reveal from "@/components/Reveal";
+import VideoSection from "@/components/VideoSection";
 import { foundationProgramPhotos } from "@/lib/foundationPhotos";
 
 // Reviews are read fresh from Supabase on every request so a newly-approved
@@ -38,32 +39,32 @@ const HOME_CAROUSEL_SLIDES = [
 
 const IMPACT_AREAS = [
   {
+    title: "Health",
+    href: "/health",
+    src: foundationProgramPhotos.healthcare[0].src,
+    alt: foundationProgramPhotos.healthcare[0].alt,
+    description: "Rural healthcare access, preventive awareness, eye and dental camps, and elder/disability support.",
+  },
+  {
     title: "Education",
     href: "/education",
     src: foundationProgramPhotos.education[0].src,
     alt: foundationProgramPhotos.education[0].alt,
-    description: "School support, learning continuity and educational activity in community settings.",
+    description: "School infrastructure improvement, student support, mentoring and community mobilisation.",
   },
   {
-    title: "Healthcare",
-    href: "/healthcare",
-    src: foundationProgramPhotos.healthcare[0].src,
-    alt: foundationProgramPhotos.healthcare[0].alt,
-    description: "Health camps and outreach activities that bring care to underserved communities.",
+    title: "Women Empowerment",
+    href: "/women-empowerment",
+    src: foundationProgramPhotos.volunteers[0].src,
+    alt: foundationProgramPhotos.volunteers[0].alt,
+    description: "Vocational training, SHG support, adolescent girl care and leadership opportunities.",
   },
   {
-    title: "Annadanam",
-    href: "/annadanam",
+    title: "Feeding Hunger",
+    href: "/feeding-hunger",
     src: foundationProgramPhotos.annadanam[0].src,
     alt: foundationProgramPhotos.annadanam[0].alt,
-    description: "Food distribution and hunger relief support offered with practical community care.",
-  },
-  {
-    title: "Child Welfare",
-    href: "/child-welfare",
-    src: foundationProgramPhotos.childWelfare[0].src,
-    alt: foundationProgramPhotos.childWelfare[0].alt,
-    description: "Child-focused support, awareness, and community care rooted in dignity and safety.",
+    description: "School meal support, dry ration assistance, and feeding support for vulnerable elders and families.",
   },
 ];
 
@@ -188,6 +189,8 @@ export default async function Home() {
         </div>
       </Reveal>
 
+      <VideoSection />
+
       {/* Mission */}
       <section className="section-band py-20">
         <div className="container-seva grid gap-12 md:grid-cols-2 md:items-center">
@@ -238,42 +241,34 @@ the base for sustainable development.
               Seva, in five parts.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <ProgramCard
               accent="sky"
               icon={Stethoscope}
-              title="Rural Education"
-              description="Free diagnostic and treatment camps bringing doctors, medicines and screenings to villages with little access to care."
-            />
-            <ProgramCard
-              accent="rust"
-              icon={HeartHandshake}
-              title="Rural Health services"
-              description="Weekly meal distribution and dry-ration drives for families facing hunger, plus emergency supplies during crises."
+              title="Health"
+              description="General health camps, eye care, dental check-ups, preventive awareness, and elder/disability support."
+              slug="health"
             />
             <ProgramCard
               accent="magenta"
               icon={GraduationCap}
-              title="Education support"
-              description="School supplies, fee assistance and tuition support so no child's education ends for want of means."
+              title="Education"
+              description="School repair, classroom support, books and stationery, mentoring and community mobilisation."
+              slug="education"
+            />
+            <ProgramCard
+              accent="rust"
+              icon={Users}
+              title="Women Empowerment"
+              description="Vocational skills, SHG support, menstrual health awareness and leadership opportunities for women."
+              slug="women-empowerment"
             />
             <ProgramCard
               accent="leaf"
-              icon={ShieldPlus}
+              icon={HeartHandshake}
               title="Feeding Hunger"
-              description="Rapid relief kits, shelter support and coordination with local authorities when floods, cyclones or crises strike."
-            />
-            <ProgramCard
-              accent="magenta"
-              icon={Users}
-              title="Women & children"
-              description="Vocational training and support programs that help women build sustainable livelihoods for their families."
-            />
-            <ProgramCard
-              accent="sky"
-              icon={Flame}
-              title="Spiritual seva"
-              description="Satsang, bhajans and community pujas that keep devotion at the centre of everything we build."
+              description="School meal support, dry ration kits and community feeding for vulnerable families and elders."
+              slug="feeding-hunger"
             />
           </div>
         </div>
